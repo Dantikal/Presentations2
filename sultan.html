@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan | Driven Tech Enthusiast & Future Leader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2a2d43;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --green: #4CAF50;
+            --orange: #FF9800;
+            --blue: #2196F3;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(76, 201, 240, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(76, 201, 240, 0.1);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(76, 201, 240, 0.2);
+            transform: translateX(-5px);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1c2f 100%);
+            color: white;
+            padding: 90px 0 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--blue);
+        }
+
+        header::before {
+            content: "{}";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.03;
+            font-weight: bold;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: monospace;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(33, 150, 243, 0.3);
+            margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--blue), var(--secondary));
+            padding: 5px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--blue), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            color: #d0e6f7;
+        }
+
+        .location {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(33, 150, 243, 0.15);
+            padding: 8px 25px;
+            border-radius: 30px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 70px 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 45px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--blue);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--blue), var(--secondary));
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2 i {
+            color: var(--blue);
+            background: rgba(33, 150, 243, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .about-content {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.08), rgba(76, 201, 240, 0.05));
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid var(--orange);
+        }
+
+        .highlight-box h3 {
+            color: var(--orange);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .personal-intro {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.05), rgba(76, 201, 240, 0.03));
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid var(--blue);
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: linear-gradient(to right, var(--primary), #3a3e5c);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(42, 45, 67, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(42, 45, 67, 0.3);
+        }
+
+        .skill i {
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--blue);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--blue);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--blue);
+        }
+
+        .timeline-date {
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--blue);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 5px solid var(--blue);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--blue);
+            padding: 0 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--blue);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .copyright {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Interests */
+        .interests-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .interest {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            .section { padding: 30px; }
+            h2 { font-size: 1.7rem; }
+            h2 i { width: 50px; height: 50px; font-size: 1.5rem; }
+            .social-links a { width: 50px; height: 50px; font-size: 1.3rem; }
+            .profile-img { width: 180px; height: 180px; }
+            .stats-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 70px 0 50px; }
+            .profile-img { width: 150px; height: 150px; }
+            .section { padding: 25px; }
+            .social-links { gap: 15px; }
+            .footer-quote { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> TeamPortfolio
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="daniel.html" class="nav-link">
+                    <i class="fas fa-user"></i> Daniel
+                </a>
+                <a href="rashid.html" class="nav-link">
+                    <i class="fas fa-user-friends"></i> Rashid
+                </a>
+                <a href="sultan.html" class="nav-link active">
+                    <i class="fas fa-user-tie"></i> Sultan
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-img">
+                    <img src="images/suli.jpeg" alt="Sultan's Photo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                </div>
+                <h1>Sultan</h1>
+                <p class="tagline">Driven Tech Enthusiast, Car Lover & Future Leader</p>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bishkek, Kyrgyzstan</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Team
+        </a>
+
+        <!-- About Me -->
+        <section class="section">
+            <h2><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="about-content">
+                <div class="personal-intro">
+                    <p>Hi, my name is Sultan! I'm 17 years old, and I was born and raised in sunny Bishkek—a city where the mountains meet the energy of a big city. Since childhood, I've been very active and have tried many sports, from football and wrestling to track and field. Sports taught me discipline, determination, and how to work as a team.</p>
+                    
+                    <p>When it comes to simple pleasures, my color is confident and calm blue. My favorite dish is fragrant pilaf seasoned with cumin, which reminds me of home. I don't watch movies often, preferring to live my own stories rather than watch others'. However, my headphones are often playing music—the energetic tracks of LUCAAFROS and Elbrus set the rhythm for my days. In the gaming world, my unconditional choice is CS:GO, where tactics, reflexes, and team spirit are key.</p>
+                    
+                    <p>But my main hobby, my true passion, is cars. I don't just like them; I adore them. When I get behind the wheel, everything else ceases to exist. I feel the adrenaline rush through my veins, an incomparable sense of drive, and a feeling of complete freedom. It's not just a way to get from point A to point B—it's art, technology, and emotion all in one. Understanding a car, its character and capabilities—that's what excites me. It's a hobby I'm sure will stay with me forever.</p>
+                    
+                    <p>I even have my own superpower—I'm a master at avoiding getting a "telling-off" from my dad! Probably the result of the maneuvering skills I've acquired, not just on the road.</p>
+                    
+                    <p>Recently, as soon as I was old enough, I got my long-awaited driver's license. Now I enjoy exploring city routes, and the respect from my friends when we drive somewhere together is a nice bonus.</p>
+                    
+                    <p>I believe in constant growth. Right now, I'm actively studying everything related to cars—from how engines work to tuning. At the same time, I'm learning English and Arabic to open up new horizons and cultures for myself. And, like any modern guy, I'm into gadgets—phones for me aren't just devices, but interesting pieces of technology I want to understand inside and out.</p>
+                    
+                    <p>So, that's me—Sultan: energetic, driven, and hopelessly in love with the world of speed and technology. Everything is just beginning!</p>
+                </div>
+                
+                <h3 style="color: var(--blue); margin-top: 30px;">Personal Interests & Hobbies</h3>
+                <div class="interests-container">
+                    <div class="interest"><i class="fas fa-car"></i> Cars & Automotive Technology</div>
+                    <div class="interest"><i class="fas fa-music"></i> Music (LUCAAFROS, Elbrus)</div>
+                    <div class="interest"><i class="fas fa-gamepad"></i> Gaming (CS:GO)</div>
+                    <div class="interest"><i class="fas fa-language"></i> Language Learning</div>
+                    <div class="interest"><i class="fas fa-football-ball"></i> Sports</div>
+                    <div class="interest"><i class="fas fa-mobile-alt"></i> Gadgets & Technology</div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Years Young</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Car Enthusiast</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Languages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Curiosity</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills & Aspirations -->
+        <section class="section">
+            <h2><i class="fas fa-cogs"></i> Skills & Future Aspirations</h2>
+            <div class="about-content">
+                <p>As a passionate learner with a drive for technology and mechanics, I'm developing skills that will shape my future career and personal growth.</p>
+                
+                <div class="skills-container">
+                    <div class="skill"><i class="fas fa-car"></i> Automotive Technology</div>
+                    <div class="skill"><i class="fas fa-language"></i> Language Learning</div>
+                    <div class="skill"><i class="fas fa-tools"></i> Technical Understanding</div>
+                    <div class="skill"><i class="fas fa-users"></i> Team Collaboration</div>
+                    <div class="skill"><i class="fas fa-brain"></i> Quick Learning</div>
+                    <div class="skill"><i class="fas fa-mobile-alt"></i> Gadget Analysis</div>
+                    <div class="skill"><i class="fas fa-gamepad"></i> Strategic Gaming</div>
+                    <div class="skill"><i class="fas fa-dumbbell"></i> Athletic Discipline</div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-lightbulb"></i> Personal Philosophy</h3>
+                    <p>"I believe in constant growth and exploration. Whether it's understanding how an engine works, learning a new language, or mastering a new technology, every day is an opportunity to become better than yesterday. My passion for cars isn't just about speed—it's about understanding complex systems, appreciating engineering, and feeling that connection between human and machine. This same curiosity drives my interest in technology, languages, and personal development."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Goals -->
+        <section class="section">
+            <h2><i class="fas fa-flag-checkered"></i> Future Goals & Dreams</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Short-term</div>
+                    <h3 class="timeline-title">Master Automotive Engineering</h3>
+                    <p>Deepen my understanding of car mechanics, tuning, and engineering principles. Build a custom project car that combines performance with personal style.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Medium-term</div>
+                    <h3 class="timeline-title">Language & Cultural Mastery</h3>
+                    <p>Achieve fluency in English and Arabic to connect with global car communities and explore opportunities in international automotive industries.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Long-term</div>
+                    <h3 class="timeline-title">Tech-Automotive Fusion Career</h3>
+                    <p>Combine my passion for technology and cars into a career—whether in automotive software, electric vehicle development, or automotive journalism.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Projects -->
+        <section class="section">
+            <h2><i class="fas fa-rocket"></i> Current Projects & Learning</h2>
+            <div class="about-content">
+                <div class="highlight-box">
+                    <h3><i class="fas fa-car-side"></i> Automotive Knowledge Building</h3>
+                    <p>Studying engine mechanics, automotive electronics, and tuning techniques. Learning how different systems interact to create the perfect driving experience.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-language"></i> Language Learning Journey</h3>
+                    <p>Daily practice in English and Arabic through apps, music, and conversation. Focusing on technical vocabulary related to cars and technology.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-laptop-code"></i> Technology Exploration</h3>
+                    <p>Understanding how modern gadgets work, from smartphones to car infotainment systems. Exploring how software and hardware create seamless user experiences.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section">
+            <h2><i class="fas fa-envelope"></i> Connect With Me</h2>
+            <div class="about-content">
+                <p>I'm always excited to connect with fellow car enthusiasts, tech lovers, and motivated individuals who share my passions. Whether you want to discuss cars, technology, languages, or just share interesting ideas—let's connect!</p>
+                
+                <div class="skills-container" style="margin-top: 25px;">
+                    <div class="skill"><i class="fas fa-envelope"></i> sultan.car.tech@example.com</div>
+                    <div class="skill"><i class="fas fa-phone"></i> +996 555 123 456</div>
+                    <div class="skill"><i class="fas fa-map-marker-alt"></i> Bishkek, Kyrgyzstan</div>
+                    <div class="skill"><i class="fas fa-graduation-cap"></i> Student & Enthusiast</div>
+                </div>
+                
+                <p style="margin-top: 20px; font-style: italic; color: var(--blue);">
+                    "Life is like driving—you need focus, skill, and sometimes you have to take the scenic route to appreciate the journey."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-quote">"The road to success is always under construction. Enjoy the drive!"</p>
+                
+                <div class="social-links">
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+                
+                <p class="copyright">© <span id="current-year">2023</span> Sultan. All rights reserved. | Driven by passion, fueled by curiosity</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Add active class to current page link
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Animation on scroll
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+            
+            // Simple counter animation for stats
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                if (!isNaN(text) || text === '∞') return;
+                
+                // For percentage stats
+                if (text.includes('%')) {
+                    const target = parseInt(text);
+                    let current = 0;
+                    const increment = target / 30;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target + '%';
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current) + '%';
+                        }
+                    }, 40);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

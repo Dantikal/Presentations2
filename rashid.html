@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rashid | Negotiator & Future Travel Blogger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2a2d43;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --blue: #2980b9;
+            --travel: #e74c3c;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+            color: var(--dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary), var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, var(--secondary), var(--blue));
+            color: white;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.25);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .back-btn:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateX(-8px);
+            border-color: var(--secondary);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1c2f 100%);
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        header::before {
+            content: "✈️";
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.03;
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-50%) rotate(10deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, var(--white), var(--secondary));
+            padding: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--white), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #e9ecef;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .location {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 28px;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        main {
+            padding: 80px 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.08);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--white), var(--secondary));
+        }
+
+        .section:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(52, 152, 219, 0.12);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+        }
+
+        h2 i {
+            color: white;
+            background: linear-gradient(135deg, var(--secondary), var(--blue));
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .about-content {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(46, 204, 113, 0.05));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(52, 152, 219, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+        }
+
+        .highlight-box h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Preferences */
+        .preferences {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .pref-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .pref-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .pref-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .color.white { background-color: var(--white); border: 2px solid #ddd; }
+        .color.blue { background-color: var(--secondary); }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .skill {
+            background: linear-gradient(135deg, var(--primary), #3a3e5c);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(42, 45, 67, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(42, 45, 67, 0.3);
+            border-color: var(--accent);
+        }
+
+        .skill i {
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        /* Countries */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .country-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .country-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--travel);
+        }
+
+        .country-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--travel);
+        }
+
+        .country-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Travel Vision */
+        .vision-card {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(52, 152, 219, 0.05));
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            border: 3px solid var(--travel);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-card::before {
+            content: "🌍";
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .vision-card h3 {
+            color: var(--travel);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 80px;
+            border-top: 5px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-8px) scale(1.1);
+            border-color: white;
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .copyright {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h1 { font-size: 2.8rem; }
+            .tagline { font-size: 1.2rem; }
+            .section { padding: 35px; }
+            h2 { font-size: 1.9rem; }
+            h2 i { width: 60px; height: 60px; font-size: 1.8rem; }
+            .profile-img { width: 180px; height: 180px; }
+            .social-links a { width: 55px; height: 55px; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 80px 0 60px; }
+            .profile-img { width: 160px; height: 160px; }
+            .section { padding: 30px; }
+            .social-links { gap: 20px; }
+            .footer-quote { font-size: 1.2rem; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-globe"></i> TeamPortfolio
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="daniel.html" class="nav-link">
+                    <i class="fas fa-user"></i> Daniel
+                </a>
+                <a href="rashid.html" class="nav-link active">
+                    <i class="fas fa-user-friends"></i> Rashid
+                </a>
+                <a href="sultan.html" class="nav-link">
+                    <i class="fas fa-user-tie"></i> Sultan
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-img">
+                    <img src="images/rashka.jpeg" alt="Rashid's Photo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                </div>
+                <h1>Rashid</h1>
+                <p class="tagline">Negotiator, former street photographer, and aspiring travel blogger from Bishkek</p>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bishkek, Kyrgyzstan</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Team
+        </a>
+
+        <!-- Basic Introduction -->
+        <section class="section">
+            <h2><i class="fas fa-user-circle"></i> Basic Introduction</h2>
+            <div class="about-content">
+                <p><strong>What's your name?</strong><br>
+                My name is Rashid, I'm 25 years old.</p>
+                
+                <p><strong>Where are you from?</strong><br>
+                I'm from Bishkek, born and raised here.</p>
+                
+                <p><strong>An interesting fact about you</strong><br>
+                I used to be a street photographer and had long hair down to my elbows.</p>
+                
+                <div class="preferences">
+                    <div class="pref-item">
+                        <h4><i class="fas fa-palette"></i> Favorite Colors</h4>
+                        <p>My favorite colors are white and blue.</p>
+                        <div class="color-palette">
+                            <div class="color white" title="White"></div>
+                            <div class="color blue" title="Blue"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="pref-item">
+                        <h4><i class="fas fa-utensils"></i> Favorite Food</h4>
+                        <p>When it comes to food, I prefer meat, especially steaks.</p>
+                    </div>
+                    
+                    <div class="pref-item">
+                        <h4><i class="fas fa-music"></i> Music & Leisure</h4>
+                        <p>I love singing, dancing, and playing billiards in my free time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Hobby Zone -->
+        <section class="section">
+            <h2><i class="fas fa-heart"></i> My Hobby Zone</h2>
+            <div class="about-content">
+                <p><strong>Main hobby</strong><br>
+                At the moment, my main hobby is my work.</p>
+                
+                <p><strong>Why do you like it?</strong><br>
+                I enjoy communicating with people and being helpful — assisting them in finding a home, safety, coziness, and comfort.</p>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-lightbulb"></i> What does it mean to you?</h3>
+                    <p>It's a source of income, stability, and self-fulfillment. Every day brings new people, new stories, and new opportunities to make a positive difference in someone's life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Superpower -->
+        <section class="section">
+            <h2><i class="fas fa-bolt"></i> My Superpower</h2>
+            <div class="about-content">
+                <p><strong>What is your superpower?</strong><br>
+                My superpower is <strong>negotiation</strong>.</p>
+                
+                <p><strong>What's your experience?</strong><br>
+                I've practically been learning negotiation skills my entire life, starting from childhood interactions to professional settings.</p>
+                
+                <div class="skills-container">
+                    <div class="skill"><i class="fas fa-eye"></i> Reading body language and movements</div>
+                    <div class="skill"><i class="fas fa-hand-holding-heart"></i> Empathy and sensitivity</div>
+                    <div class="skill"><i class="fas fa-brain"></i> Understanding psychology and analyzing the interlocutor</div>
+                    <div class="skill"><i class="fas fa-handshake"></i> The ability to build trust and reach agreements</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Proud Moment -->
+        <section class="section">
+            <h2><i class="fas fa-trophy"></i> My Proud Moment</h2>
+            <div class="about-content">
+                <p><strong>Your major achievement</strong><br>
+                I always dreamed of traveling — and thanks to my work, I started regularly going abroad.</p>
+                
+                <div class="countries-grid">
+                    <div class="country-card">
+                        <div class="country-icon">🇹🇷</div>
+                        <div class="country-name">Turkey</div>
+                    </div>
+                    <div class="country-card">
+                        <div class="country-icon">🇦🇪</div>
+                        <div class="country-name">Dubai</div>
+                    </div>
+                    <div class="country-card">
+                        <div class="country-icon">🇹🇭</div>
+                        <div class="country-name">Thailand</div>
+                    </div>
+                    <div class="country-card">
+                        <div class="country-icon">🇸🇦</div>
+                        <div class="country-name">Saudi Arabia</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-compass"></i> What did it give you?</h3>
+                    <p>Travel broadened my horizons, allowed me to break out of the confines of my city, country, and habitual way of thinking, and introduced me to different cultures and people.</p>
+                </div>
+                
+                <p><strong>What are you studying now?</strong><br>
+                I'm studying English and developing my vocal skills to better connect with people from around the world.</p>
+            </div>
+        </section>
+
+        <!-- My Dream for the Future -->
+        <section class="section">
+            <h2><i class="fas fa-rocket"></i> My Dream for the Future</h2>
+            <div class="about-content">
+                <p><strong>Who do you want to become?</strong><br>
+                I want to become a <strong>travel blogger</strong>.</p>
+                
+                <div class="vision-card">
+                    <h3><i class="fas fa-bullseye"></i> What's the idea?</h3>
+                    <p>To show countries for our people, but from an unusual angle — as if a person aged 55+ is traveling, someone who has already lived a life, proving that traveling is easy and accessible at any age.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-road"></i> How do you plan to achieve this?</h3>
+                    <p>I already have a project and a creative concept, partnerships, and a clear understanding of how to influence people's thinking and inspire them through content. My negotiation skills and people-first approach will help me create authentic, relatable travel stories that break down barriers and inspire others to explore the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section">
+            <h2><i class="fas fa-envelope"></i> Let's Connect</h2>
+            <div class="about-content">
+                <p>I'm always open to conversations about travel, negotiation, photography, or potential collaborations for my future travel blogging project!</p>
+                
+                <div class="skills-container" style="margin-top: 30px;">
+                    <div class="skill"><i class="fas fa-envelope"></i> rashid@example.com</div>
+                    <div class="skill"><i class="fas fa-phone"></i> +996 555 789 012</div>
+                    <div class="skill"><i class="fas fa-map-marker-alt"></i> Bishkek, Kyrgyzstan</div>
+                    <div class="skill"><i class="fas fa-plane"></i> Available for Travel Projects</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-quote">"The world is a book, and those who do not travel read only one page." — Saint Augustine</p>
+                
+                <div class="social-links">
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+                
+                <p class="copyright">© <span id="current-year">2023</span> Rashid. Journey continues...</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Add active class to current page link
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Animation on scroll
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(section);
+            });
+            
+            // Country cards animation
+            const countryCards = document.querySelectorAll('.country-card');
+            countryCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
